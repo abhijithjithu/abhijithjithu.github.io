@@ -1,18 +1,53 @@
 <html>
-    
     <head>
-        <title>
-            tut1
-        </title>
-        <script type="text/javascript">
-            function buttonclick()
-            {
-                alert("crimsonprince on deck")
-            }
-        </script>
-        <body>
-            <button onclick="buttonclick()">click this</button>
-            <h1>click the above button</h1>
-        </body>
+        <title>moneycalculator</title>
     </head>
+    <body>
+            <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyBNjI7vL426QtxvwTcYo6uYTRQ7vNHkn_U",
+        authDomain: "first-project-befff.firebaseapp.com",
+        databaseURL: "https://first-project-befff.firebaseio.com",
+        projectId: "first-project-befff",
+        storageBucket: "first-project-befff.appspot.com",
+        messagingSenderId: "375421576",
+        appId: "1:375421576:web:5f18cdc7a26b12b59efd3d"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    </script>
+
+<script>
+  function writedata()
+  {
+    //   var storage = firebase.storage();
+    //   var storageRef = storage.ref();
+    //   var imagesRef = storageRef.child('images');
+    //   var spaceRef = storageRef.child('images/space.jpg');
+    firebase.database().ref("user").set({
+        name:"abhi",
+        age:"27"
+    });;
+      alert("ssss")
+     
+       
+      
+      alert("worksed")
+  }
+</script>
+
+
+
+<input type="text" id="money" placeholder="enter the amount"> 
+<button onclick="writedata()">clickit</button>
+
+    </body>
+
 </html>
