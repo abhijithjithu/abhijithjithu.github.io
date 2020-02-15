@@ -41,6 +41,9 @@
     var foodm
     var petrolm
     var randomm
+    var foodsa
+    var petrolsa
+    var randomsa
 
   function readData()
   {
@@ -66,23 +69,46 @@
 readData()
     
 
-    function writedata()
+    function updatedata()
   {
+    
     foods = document.getElementById("food").value;
+    foodsa = foods+"a"
+    if(foodsa == "a"){
+        foods =0
+    }
+    
+    
+    
     petrols = document.getElementById("petrol").value;
+    petrolsa = petrols+"a"
+
+    if(petrolsa == "a"){
+        petrols =0
+    }
+
     randoms = document.getElementById("random").value;
-    firebase.database().ref("money/m").set({
+    randomsa = randoms+"a"
+    if(randomsa == "a"){
+        randoms =0
+    }
+}
+    function writedata()
+    {
+        updatedata()
+        firebase.database().ref("money/m").set({
         food:foodm+parseInt(foods, 10),
         petrol:petrolm+parseInt(petrols, 10),
         random:randomm+parseInt(randoms, 10)
+    }
     
-    });
-    
+    );
+
     document.getElementById("data1").innerHTML='foodtotal='+foodm
     document.getElementById("data2").innerHTML='petroltotal='+petrolm
     document.getElementById("data3").innerHTML='randomtotal='+randomm
- 
 }
+
 function deleteallcosts()
 {
         firebase.database().ref("money/m").set({
