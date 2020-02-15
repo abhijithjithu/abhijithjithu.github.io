@@ -3,8 +3,15 @@
         <title>moneycalculator</title>
     </head>
     <body>
+
+
+
+
+
+
             <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-database.js"></script>
 
     <!-- TODO: Add SDKs for Firebase products that you want to use
         https://firebase.google.com/docs/web/setup#available-libraries -->
@@ -24,29 +31,90 @@
     firebase.initializeApp(firebaseConfig);
     </script>
 
+
+
+
+
+
+
 <script>
-  function writedata()
+    var foodm
+    var petrolm
+    var randomm
+
+  function readData()
   {
-    //   var storage = firebase.storage();
-    //   var storageRef = storage.ref();
-    //   var imagesRef = storageRef.child('images');
-    //   var spaceRef = storageRef.child('images/space.jpg');
-    firebase.database().ref("user").set({
-        name:"abhi",
-        age:"27"
-    });;
-      alert("ssss")
-     
-       
-      
-      alert("worksed")
-  }
+    ref = firebase.database().ref('money')
+    ref.on("value",function (snapshot){
+        snapshot.forEach(function(childSnapshot){
+            var data = childSnapshot.val();
+            foodm = data.food
+            petrolm = data.petrol
+            randomm = data.random
+            //  console.log(foodm)
+            //  console.log(petrolm)
+             
+
+             
+
+            // return(foodm)
+            // return(petrolm)
+            
+        })
+    })
+}
+readData()
+    
+
+    function writedata()
+  {
+    foods = document.getElementById("food").value;
+    petrols = document.getElementById("petrol").value;
+    randoms = document.getElementById("random").value;
+    firebase.database().ref("money/m").set({
+        food:foodm+parseInt(foods, 10),
+        petrol:petrolm+parseInt(petrols, 10),
+        random:randomm+parseInt(randoms, 10)
+    
+    });
+    
+    document.getElementById("data1").innerHTML='foodtotal='+foodm
+    document.getElementById("data2").innerHTML='petroltotal='+petrolm
+    document.getElementById("data3").innerHTML='randomtotal='+randomm
+ 
+}
+function deleteallcosts()
+{
+        firebase.database().ref("money/m").set({
+        food:parseInt(0, 10),
+        petrol:parseInt(0, 10),
+        random:parseInt(0, 10)
+        
+    });
+    document.getElementById("data1").innerHTML='foodtotal='+foodm
+    document.getElementById("data2").innerHTML='petroltotal='+petrolm
+    document.getElementById("data3").innerHTML='randomtotal='+randomm
+}
+
+
+  
+
 </script>
 
 
 
-<input type="text" id="money" placeholder="enter the amount"> 
-<button onclick="writedata()">clickit</button>
+
+<input type="text" id="food" placeholder="enter food"> 
+<br>
+<input type="text" id="petrol" placeholder="enter petrol"> 
+<br>
+<input type="text" id="random" placeholder="enter random expenses"> 
+<button onclick="writedata()">submitt to server</button>
+<button onclick="deleteallcosts()">deleteallcosts</button>
+<p id="data1">foodtotal:</p>
+<p id="data2">petroltotal:</p>
+<p id="data3">randomtotal:</p>
+
 
     </body>
 
