@@ -44,7 +44,11 @@
     var foodsa
     var petrolsa
     var randomsa
+    document.body.style.backgroundColor = "#f3f3f3";
+    document.body.style.backgroundImage = "url('about_1.jpg')";
 
+
+    //read the data from firebase
   function readData()
   {
     ref = firebase.database().ref('money')
@@ -54,21 +58,12 @@
             foodm = data.food
             petrolm = data.petrol
             randomm = data.random
-            //  console.log(foodm)
-            //  console.log(petrolm)
-             
-
-             
-
-            // return(foodm)
-            // return(petrolm)
-            
         })
     })
 }
 readData()
     
-
+//update the data to variables
     function updatedata()
   {
     
@@ -93,6 +88,7 @@ readData()
         randoms =0
     }
 }
+// upload the data to the firebase server
     function writedata()
     {
         updatedata()
@@ -103,7 +99,7 @@ readData()
     }
     
     );
-
+//update the costs in the website after the data is updated in the firebase
     document.getElementById("data1").innerHTML='foodtotal='+foodm
     document.getElementById("data2").innerHTML='petroltotal='+petrolm
     document.getElementById("data3").innerHTML='randomtotal='+randomm
@@ -117,6 +113,7 @@ function deleteallcosts()
         random:parseInt(0, 10)
         
     });
+    //update the cost in the website after every value is set to zero
     document.getElementById("data1").innerHTML='foodtotal='+foodm
     document.getElementById("data2").innerHTML='petroltotal='+petrolm
     document.getElementById("data3").innerHTML='randomtotal='+randomm
@@ -137,9 +134,9 @@ function deleteallcosts()
 <input type="text" id="random" placeholder="enter random expenses"> 
 <button onclick="writedata()">submitt to server</button>
 <button onclick="deleteallcosts()">deleteallcosts</button>
-<p id="data1">foodtotal:</p>
-<p id="data2">petroltotal:</p>
-<p id="data3">randomtotal:</p>
+<h2 id="data1">foodtotal:</h2>
+<h2 id="data2">petroltotal:</h2>
+<h2 id="data3">randomtotal:</h2>
 
 
     </body>
