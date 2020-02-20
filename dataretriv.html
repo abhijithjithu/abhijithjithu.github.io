@@ -1,0 +1,205 @@
+<html>
+    <title>secret id </title>
+    Enter the secret id: 
+    <br>
+    <input type="password" id="secretid" placeholder="secret id"> 
+        <button onclick="checkid()">submit id</button>
+        <br>
+        <input type="text" id="details" placeholder="Enter name">
+        <button id="Button1" onclick="readData()">gotodata</a></button>
+        <br>
+        <input type="text" id="reqage" placeholder="required age">
+        <button id="Button2" onclick="ageData()">submit</a></button>
+        <br>
+        <input type="text" id="reqweight" placeholder="required weight">
+        <button id="Button3" onclick="weightData()">submit</a></button>
+        <br>
+        <input type="text" id="reqheight" placeholder="required height">
+        <button id="Button4" onclick="heightData()">submit</a></button>
+        <br>
+        <input type="text" id="reqnationality" placeholder="required nationality">
+        <button id="Button5" onclick="nationalityData()">submit</a></button>
+
+
+   <p id='name'></p>
+   <p id='age'></p>
+   <p id='nationality'></p>
+   <p id='height'></p>
+   <p id='weight'></p>
+   <p id='number'></p>
+   
+    <body>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+   <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-database.js"></script>
+
+   <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+
+   <script>
+   // Your web app's Firebase configuration
+   var firebaseConfig = {
+       apiKey: "AIzaSyBNjI7vL426QtxvwTcYo6uYTRQ7vNHkn_U",
+       authDomain: "first-project-befff.firebaseapp.com",
+       databaseURL: "https://first-project-befff.firebaseio.com",
+       projectId: "first-project-befff",
+       storageBucket: "first-project-befff.appspot.com",
+       messagingSenderId: "375421576",
+       appId: "1:375421576:web:5f18cdc7a26b12b59efd3d"
+   };
+   // Initialize Firebase
+   firebase.initializeApp(firebaseConfig);
+   </script>
+   <script>
+document.getElementById("Button1").disabled = true;
+document.getElementById("Button2").disabled = true;
+document.getElementById("Button3").disabled = true;
+document.getElementById("Button4").disabled = true;
+document.getElementById("Button5").disabled = true;
+
+  function checkid()
+  {
+      if(document.getElementById("secretid").value=='a')
+      {
+          alert("correct id move to the dataset")
+          document.getElementById("Button1").disabled = false;
+          document.getElementById("Button2").disabled = false;
+          document.getElementById("Button3").disabled = false;
+          document.getElementById("Button4").disabled = false;
+          document.getElementById("Button5").disabled = false;
+      }
+      else
+      {
+          alert("incorrect id")
+          document.getElementById("Button1").disabled = true;
+          document.getElementById("Button2").disabled = true;
+          document.getElementById("Button3").disabled = true;
+          document.getElementById("Button4").disabled = true;
+          document.getElementById("Button5").disabled = true;
+      }
+  }
+       function readData()
+  {var m=0
+    ref = firebase.database().ref('moneyy')
+    ref.on("value",function (snapshot){
+        snapshot.forEach(function(childSnapshot){
+            var data = childSnapshot.val();
+            var pname =document.getElementById("details").value
+            if(pname==data.name && m==0){
+                document.getElementById('name').innerHTML='name: '+ data.name
+                document.getElementById('age').innerHTML= 'age: '+data.age
+                document.getElementById('nationality').innerHTML= 'nationality: '+data.nationality
+                document.getElementById('height').innerHTML='height: '+ data.height
+                document.getElementById('weight').innerHTML= 'weight: '+data.weight
+                m=m+1
+            }
+      
+            // document.getElementById("name").innerHTML = "name: " + data.pname.height
+        })
+    })
+}
+function ageData()
+  {var lage =[]
+  var m=0
+    ref = firebase.database().ref('moneyy')
+    ref.on("value",function (snapshot){
+        snapshot.forEach(function(childSnapshot){
+            var data = childSnapshot.val();
+            var page =document.getElementById("reqage").value
+            if(page==data.age){
+              lage.push(data.name)
+              m = m+1
+                
+            }
+      
+            // document.getElementById("name").innerHTML = "name: " + data.pname.height
+        })
+        console.log(lage)
+        document.getElementById('age').innerHTML= 'age: '+lage
+        document.getElementById('number').innerHTML= 'number: '+m
+
+
+
+    })
+}
+function weightData()
+  {var lweight =[]
+  var m=0
+    ref = firebase.database().ref('moneyy')
+    ref.on("value",function (snapshot){
+        snapshot.forEach(function(childSnapshot){
+            var data = childSnapshot.val();
+            var pweight =document.getElementById("reqweight").value
+            if(pweight==data.weight){
+              lweight.push(data.name)
+              m=m+1
+                
+            }
+      
+            // document.getElementById("name").innerHTML = "name: " + data.pname.height
+        })
+        console.log(lweight)
+        document.getElementById('weight').innerHTML= 'weight: '+lweight
+        document.getElementById('number').innerHTML= 'number: '+m
+
+
+    })
+}
+function heightData()
+  {var lheight =[]
+    var m=0
+    ref = firebase.database().ref('moneyy')
+    ref.on("value",function (snapshot){
+        snapshot.forEach(function(childSnapshot){
+            var data = childSnapshot.val();
+            var pheight =document.getElementById("reqheight").value
+            if(pheight==data.height){
+              lheight.push(data.name)
+              m=m+1
+                
+            }
+      
+            // document.getElementById("name").innerHTML = "name: " + data.pname.height
+        })
+        console.log(lheight)
+        document.getElementById('height').innerHTML='height: '+ lheight
+        document.getElementById('number').innerHTML= 'number: '+m
+
+
+    })
+}
+function nationalityData()
+  {var lnationality =[]
+    var m=0
+    ref = firebase.database().ref('moneyy')
+    ref.on("value",function (snapshot){
+        snapshot.forEach(function(childSnapshot){
+            var data = childSnapshot.val();
+            var pnationality =document.getElementById("reqnationality").value
+            if(pnationality==data.nationality){
+              lnationality.push(data.name)
+              m=m+1
+                
+            }
+      
+            // document.getElementById("name").innerHTML = "name: " + data.pname.height
+        })
+        console.log(lnationality)
+        document.getElementById('nationality').innerHTML= 'nationality: '+lnationality
+        document.getElementById('number').innerHTML= 'number: '+m
+
+
+    })
+}
+
+
+   </script>
+
+    </body>
+   
+ 
+</html>
+    
+
+  
+    

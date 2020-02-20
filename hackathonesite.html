@@ -1,0 +1,86 @@
+<html>
+    <title>register </title>
+    <body>
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="index.html">home</a></li>
+                </ul>
+            </nav>
+        </header>
+     <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-database.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyBNjI7vL426QtxvwTcYo6uYTRQ7vNHkn_U",
+        authDomain: "first-project-befff.firebaseapp.com",
+        databaseURL: "https://first-project-befff.firebaseio.com",
+        projectId: "first-project-befff",
+        storageBucket: "first-project-befff.appspot.com",
+        messagingSenderId: "375421576",
+        appId: "1:375421576:web:5f18cdc7a26b12b59efd3d"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  
+    </script>
+
+        <script>
+            
+            function func()
+            {
+            }
+            function fn1()
+            {
+                var rd1 = document.getElementById("rd1")
+                var rd2 = document.getElementById("rd2")
+                if(rd1.checked==true)
+                {
+                    alert("rd1 is checked")
+                }
+            }
+    
+function writedata()
+    {
+        firebase.database().ref("moneyy/"+document.getElementById("name").value).set({
+        name:document.getElementById("name").value,//foodm+parseInt(foods, 10),
+        age:document.getElementById("age").value,//petrolm+parseInt(petrols, 10),
+        nationality:document.getElementById("nationality").value,//randomm+parseInt(randoms, 10)
+        height:document.getElementById("height").value,
+        weight:document.getElementById("weight").value
+        
+        })
+        location.reload();
+    }
+    writedata()
+        </script>
+        <br>
+        Enter name:
+         <input type="text" id="name" placeholder="All caps"> 
+        <br>
+        Enter age:
+        <input type="text" id="age" placeholder="only numbers"> 
+        <br>
+        Enter nationality:
+        <input type="text" id="nationality" placeholder="INDIAN,AMERICAN etc.."> 
+        <br>
+        Enter height:
+        <input type="text" id="height" placeholder="in centimeters"> 
+        <br>
+        Enter weight:
+        <input type="text" id="weight" placeholder="in kilograms"> 
+        <br>
+        <input id="rd1" name="grp1" type="radio" value="slot 1"><a href="index.html">slot1</a></input>
+        <input id="rd1" name="grp1" type="radio" value="slot 2">slot 2</input>
+        <input id="rd1" name="grp1" type="radio" value="slot 3">slot 3</input>
+
+
+       <button onclick="writedata()">submitt</button>
+    </body>
+</html>
